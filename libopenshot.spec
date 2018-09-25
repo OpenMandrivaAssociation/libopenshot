@@ -106,7 +106,7 @@ applications that use %{name}.
 %{_includedir}/%{name}/
 %{_libdir}/libopenshot.so
 
-%files -n python3-%{name}
+%files -n python-%{name}
 %doc AUTHORS COPYING README
 %{python3_sitearch}/*
 

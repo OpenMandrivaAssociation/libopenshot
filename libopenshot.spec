@@ -66,12 +66,12 @@ developing applications that use %{name}.
 
 #----------------------------------------------------
 
-%package -n	python3-%{name}
+%package -n	python-%{name}
 Summary:	Python 3 bindings for %{name}
 Group:		Development/Python
 
-%description -n	python3-%{name}
-The python3-%{name} package contains python 3 bindings for
+%description -n	python-%{name}
+The python-%{name} package contains python 3 bindings for
 applications that use %{name}.
 
 #----------------------------------------------------

@@ -15,7 +15,8 @@ Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{v
 Patch1:		libopenshot-0.2.2-fix-build-with-imagemagick7.patch
 
 BuildRequires:	cmake
-BuildRequires:	cppzmq-devel
+#BuildRequires:	cppzmq-devel
+BuildRequires:  pkgconfig(libzmq)
 BuildRequires:	doxygen
 BuildRequires:	swig
 BuildRequires:	ffmpeg-devel
@@ -25,7 +26,7 @@ BuildRequires:	pkgconfig(ruby)
 BuildRequires:	libopenshot-audio-devel >= 0.1.4
 BuildRequires:	pkgconfig(ImageMagick) >= 7.0
 BuildRequires:	pkgconfig(python3)
-BuildRequires:	pkgconfig(UnitTest++)
+#BuildRequires:	pkgconfig(UnitTest++)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Help)

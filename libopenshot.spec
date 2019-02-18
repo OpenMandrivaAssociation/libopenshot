@@ -21,6 +21,7 @@ BuildRequires:  pkgconfig(libzmq)
 BuildRequires:	doxygen
 BuildRequires:	swig
 BuildRequires:	ffmpeg-devel
+BuildRequires:  zmq5
 %if %{with_ruby}
 BuildRequires:	pkgconfig(ruby)
 %endif

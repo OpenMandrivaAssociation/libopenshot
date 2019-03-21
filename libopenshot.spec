@@ -93,7 +93,7 @@ applications that use %{name}.
 %autopatch -p1
 
 %build
-%cmake
+%cmake -DENABLE_TESTS=0 ../
 %make_build
 
 %install

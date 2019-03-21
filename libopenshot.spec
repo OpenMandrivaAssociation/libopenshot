@@ -93,7 +93,7 @@ applications that use %{name}.
 %autopatch -p1
 
 %build
-%cmake -DMAGICKCORE_HDRI_ENABLE=1 -DENABLE_TESTS=0 ../
+%cmake .. -DENABLE_TESTS=1
 %make_build
 
 %install

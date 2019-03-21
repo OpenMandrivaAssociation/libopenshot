@@ -5,8 +5,8 @@
 %define with_ruby	0
 
 Name:		libopenshot
-Version:	0.2.2
-Release:	2
+Version:	2.4.4
+Release:	1
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries

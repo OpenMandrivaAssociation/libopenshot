@@ -16,8 +16,7 @@ Patch1:		libopenshot-0.2.2-fix-build-with-imagemagick7.patch
 
 BuildRequires:	cmake
 BuildRequires:  qmake5
-BuildRequires:	cppzmq-devel
-BuildRequires:  pkgconfig(libzmq)
+BuildRequires:  cmake(cppzmq)
 BuildRequires:	doxygen
 BuildRequires:	swig
 BuildRequires:	ffmpeg-devel

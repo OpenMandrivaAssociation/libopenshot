@@ -1,18 +1,18 @@
-%define major	16
+%define major	19
 %define libname	%mklibname openshot %{major}
 %define devname	%mklibname openshot -d
 
-%define with_ruby	0
+%define with_ruby	1
 
 Name:		libopenshot
-Version:	2.4.4
+Epoch:		1
+Version:	0.2.5
 Release:	1
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
 URL:		http://www.openshot.org/
 Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch1:		libopenshot-0.2.2-fix-build-with-imagemagick7.patch
 
 BuildRequires:	cmake
 BuildRequires:  qmake5
@@ -58,9 +58,9 @@ This package contains library files for %{name}.
 %package -n	%{devname}
 Summary:	Development files for %{name}
 Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
-Provides:	openshot-devel = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
+Provides:	openshot-devel = %{EVRD}
 
 %description -n	%{devname}
 The %{devname} package contains libraries and header files for
@@ -89,8 +89,7 @@ applications that use %{name}.
 #----------------------------------------------------
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 %cmake .. -DENABLE_TESTS=1
@@ -104,12 +103,12 @@ applications that use %{name}.
 %{_libdir}/libopenshot.so.%{version}
 
 %files -n %{devname}
-%doc AUTHORS COPYING README
+%doc AUTHORS COPYING
 %{_includedir}/%{name}/
 %{_libdir}/libopenshot.so
 
 %files -n python-%{name}
-%doc AUTHORS COPYING README
+%doc AUTHORS COPYING
 %{python3_sitearch}/*
 
 %if %{with_ruby}

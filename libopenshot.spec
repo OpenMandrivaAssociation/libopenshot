@@ -1,4 +1,4 @@
-%define major	19
+%define major	20
 %define libname	%mklibname openshot %{major}
 %define devname	%mklibname openshot -d
 
@@ -6,7 +6,7 @@
 
 Name:		libopenshot
 Epoch:		1
-Version:	0.2.5
+Version:	0.2.6
 Release:	1
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
@@ -17,17 +17,21 @@ Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{v
 BuildRequires:	cmake
 BuildRequires:  qmake5
 BuildRequires:	cppzmq-devel
-BuildRequires:  pkgconfig(libzmq)
 BuildRequires:	doxygen
+BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(libzmq)
+BuildRequires:  pkgconfig(jsoncpp)
+BuildRequires:  pkgconfig(opencv4)
 BuildRequires:	swig
 BuildRequires:	ffmpeg-devel
 %if %{with_ruby}
 BuildRequires:	pkgconfig(ruby)
 %endif
-BuildRequires:	libopenshot-audio-devel >= 0.1.4
+BuildRequires:	openshot-audio-devel >= 0.1.4
 BuildRequires:	pkgconfig(ImageMagick) >= 7.0
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(UnitTest++)
+BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Help)

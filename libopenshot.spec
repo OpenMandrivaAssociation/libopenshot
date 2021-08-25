@@ -17,6 +17,7 @@ Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{v
 BuildRequires:	cmake
 BuildRequires:  qmake5
 BuildRequires:	cppzmq-devel
+BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(libzmq)
 BuildRequires:	doxygen
 BuildRequires:	swig
@@ -26,7 +27,7 @@ BuildRequires:	pkgconfig(ruby)
 %endif
 BuildRequires:	openshot-audio-devel >= 0.1.4
 BuildRequires:	pkgconfig(ImageMagick) >= 7.0
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(UnitTest++)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)

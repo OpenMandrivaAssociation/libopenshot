@@ -1,4 +1,4 @@
-%define major	19
+%define major	20
 %define libname	%mklibname openshot %{major}
 %define devname	%mklibname openshot -d
 
@@ -17,9 +17,11 @@ Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{v
 BuildRequires:	cmake
 BuildRequires:  qmake5
 BuildRequires:	cppzmq-devel
+BuildRequires:	doxygen
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(libzmq)
-BuildRequires:	doxygen
+BuildRequires:  pkgconfig(jsoncpp)
+BuildRequires:  pkgconfig(opencv4)
 BuildRequires:	swig
 BuildRequires:	ffmpeg-devel
 %if %{with_ruby}
@@ -29,6 +31,7 @@ BuildRequires:	openshot-audio-devel >= 0.1.4
 BuildRequires:	pkgconfig(ImageMagick) >= 7.0
 BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(UnitTest++)
+BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Help)

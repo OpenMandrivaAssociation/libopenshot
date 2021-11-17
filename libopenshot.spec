@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(libzmq)
 BuildRequires:  pkgconfig(jsoncpp)
 BuildRequires:  pkgconfig(opencv4)
+BuildRequires:  pkgconfig(protobuf)
 BuildRequires:	swig
 BuildRequires:	ffmpeg-devel
 %if %{with_ruby}

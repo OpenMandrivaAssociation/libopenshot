@@ -1,4 +1,4 @@
-%define major	20
+%define major	21
 %define libname	%mklibname openshot %{major}
 %define devname	%mklibname openshot -d
 
@@ -6,7 +6,7 @@
 
 Name:		libopenshot
 Epoch:		1
-Version:	0.2.6
+Version:	0.2.7
 Release:	1
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
@@ -27,7 +27,7 @@ BuildRequires:	ffmpeg-devel
 %if %{with_ruby}
 BuildRequires:	pkgconfig(ruby)
 %endif
-BuildRequires:	openshot-audio-devel >= 0.1.4
+BuildRequires:	openshot-audio-devel >= 0.2.2
 BuildRequires:	pkgconfig(ImageMagick) >= 7.0
 BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(UnitTest++)

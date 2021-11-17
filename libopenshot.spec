@@ -106,11 +106,15 @@ applications that use %{name}.
 %files -n %{libname}
 %{_libdir}/libopenshot.so.%{major}
 %{_libdir}/libopenshot.so.%{version}
+%{_libdir}/libopenshot_protobuf.so.%{version}
+%{_libdir}/libopenshot_protobuf.so.%{major}
+
 
 %files -n %{devname}
 %doc AUTHORS COPYING
 %{_includedir}/%{name}/
 %{_libdir}/libopenshot.so
+%{_libdir}/libopenshot_protobuf.so
 
 %files -n python-%{name}
 %doc AUTHORS COPYING

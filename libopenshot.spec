@@ -21,6 +21,8 @@ BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(libzmq)
 BuildRequires:  pkgconfig(jsoncpp)
 BuildRequires:  pkgconfig(opencv4)
+# Referenced by OpenCVModules.cmake
+BuildRequires:	%mklibname opencv_cvv 4.5
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:	swig
 BuildRequires:	ffmpeg-devel

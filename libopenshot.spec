@@ -39,6 +39,7 @@ BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Help)
 BuildRequires:	pkgconfig(Qt5Multimedia)
 BuildRequires:	pkgconfig(Qt5MultimediaWidgets)
+BuildRequires:  pkgconfig(zlib)
 
 %description
 OpenShot Library (libopenshot) is an open-source project

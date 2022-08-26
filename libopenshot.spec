@@ -1,3 +1,4 @@
+%define _disable_ld_no_undefined 1
 %define major	21
 %define libname	%mklibname openshot %{major}
 %define devname	%mklibname openshot -d

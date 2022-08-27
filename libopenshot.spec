@@ -7,7 +7,7 @@
 
 Name:		libopenshot
 Version:	0.2.7
-Release:	5
+Release:	6
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries

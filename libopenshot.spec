@@ -100,6 +100,8 @@ applications that use %{name}.
 %autosetup -p1
 
 %build
+export CC=gcc
+export CXX=g++
 %cmake .. -DENABLE_TESTS=1
 %make_build
 

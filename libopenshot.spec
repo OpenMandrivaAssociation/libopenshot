@@ -1,26 +1,25 @@
 %define _disable_ld_no_undefined 1
-%define major	21
+%define major	23
 %define libname	%mklibname openshot %{major}
 %define devname	%mklibname openshot -d
 
 %define with_ruby	1
 
 Name:		libopenshot
-Version:	0.2.7
-Release:	6
+Version:	0.3.0
+Release:	1
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
 URL:		http://www.openshot.org/
 Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch0:		https://github.com/OpenShot/libopenshot/commit/99034feb4e5a00eeea90fc8c55ce1a511a3e9736.patch
-Patch1:		libopenshot-0.2.7-ffmpeg-5.0.patch
 
 BuildRequires:	cmake
 BuildRequires:  qmake5
 BuildRequires:	cppzmq-devel
 BuildRequires:	doxygen
 BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(babl)
 BuildRequires:  pkgconfig(libzmq)
 BuildRequires:  pkgconfig(jsoncpp)
 BuildRequires:  pkgconfig(opencv4)
@@ -30,7 +29,7 @@ BuildRequires:	ffmpeg-devel
 %if %{with_ruby}
 BuildRequires:	pkgconfig(ruby)
 %endif
-BuildRequires:	openshot-audio-devel >= 0.2.2
+BuildRequires:	openshot-audio-devel >= 0.3.0
 BuildRequires:	pkgconfig(ImageMagick) >= 7.0
 BuildRequires:	pkgconfig(python)
 #BuildRequires:	pkgconfig(UnitTest++)
@@ -114,13 +113,13 @@ applications that use %{name}.
 
 
 %files -n %{devname}
-%doc AUTHORS COPYING
+%doc AUTHORS
 %{_includedir}/%{name}/
 %{_libdir}/libopenshot.so
 %{_libdir}/libopenshot_protobuf.so
 
 %files -n python-%{name}
-%doc AUTHORS COPYING
+%doc AUTHORS
 %{python3_sitearch}/*
 
 %if %{with_ruby}

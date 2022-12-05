@@ -116,7 +116,7 @@ applications that use %{name}.
 %doc AUTHORS
 %{_includedir}/%{name}/
 %{_libdir}/libopenshot.so
-%{_libdir}/libopenshot_protobuf.so
+#{_libdir}/libopenshot_protobuf.so
 
 %files -n python-%{name}
 %doc AUTHORS

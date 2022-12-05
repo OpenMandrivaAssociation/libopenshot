@@ -108,8 +108,8 @@ applications that use %{name}.
 %files -n %{libname}
 %{_libdir}/libopenshot.so.%{major}
 %{_libdir}/libopenshot.so.%{version}
-%{_libdir}/libopenshot_protobuf.so.%{version}
-%{_libdir}/libopenshot_protobuf.so.%{major}
+#{_libdir}/libopenshot_protobuf.so.%{version}
+#{_libdir}/libopenshot_protobuf.so.%{major}
 
 
 %files -n %{devname}

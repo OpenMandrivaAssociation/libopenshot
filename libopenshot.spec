@@ -7,14 +7,16 @@
 
 Name:		libopenshot
 Version:	0.3.0
-Release:	2
+Release:	3
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
 URL:		http://www.openshot.org/
 Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{version}.tar.gz
+Patch0:		libopenshot-0.3.0-c++17.patch
 
 BuildRequires:	cmake
+BuildRequires:	ninja
 BuildRequires:  qmake5
 BuildRequires:	cppzmq-devel
 BuildRequires:	doxygen
@@ -97,13 +99,13 @@ applications that use %{name}.
 
 %prep
 %autosetup -p1
+%cmake .. -DENABLE_TESTS=1 -G Ninja
 
 %build
-%cmake .. -DENABLE_TESTS=1
-%make_build
+%ninja_build -C build
 
 %install
-%make_install -C build
+%ninja_install -C build
 
 %files -n %{libname}
 %{_libdir}/libopenshot.so.%{major}

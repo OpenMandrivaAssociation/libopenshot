@@ -1,13 +1,14 @@
 %define _disable_ld_no_undefined 1
 %define major	25
-%define libname	%mklibname openshot %{major}
+%define oldlibname %mklibname openshot 25
+%define libname	%mklibname openshot
 %define devname	%mklibname openshot -d
 
 %define with_ruby	1
 
 Name:		libopenshot
 Version:	0.3.2
-Release:	4
+Release:	5
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
@@ -54,6 +55,7 @@ visit <http://www.openshot.org/>.
 %package -n	%{libname}
 Summary:	OpenShot Library
 Group:		System/Libraries
+%rename		%{oldlibname}
 
 %description -n	%{libname}
 OpenShot Library (libopenshot) is an open-source project

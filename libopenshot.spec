@@ -104,6 +104,7 @@ applications that use %{name}.
 %cmake .. -DENABLE_TESTS=1 -G Ninja
 
 %build
+export LD_LIBRARY_PATH=$(pwd)/build/src:$LD_LIBRARY_PATH
 %ninja_build -C build
 
 %install

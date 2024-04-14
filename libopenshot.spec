@@ -8,13 +8,14 @@
 
 Name:		libopenshot
 Version:	0.3.2
-Release:	9
+Release:	10
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
 URL:		http://www.openshot.org/
 Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:		libopenshot-0.3.0-c++17.patch
+Patch1:		libopenshot-0.3.2-ffmpeg7.patch
 
 BuildRequires:	cmake
 BuildRequires:	ninja

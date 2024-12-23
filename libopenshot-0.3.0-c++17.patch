@@ -1,11 +1,11 @@
-diff -up libopenshot-0.3.0/CMakeLists.txt.omv~ libopenshot-0.3.0/CMakeLists.txt
---- libopenshot-0.3.0/CMakeLists.txt.omv~	2023-03-09 12:35:49.835034100 +0100
-+++ libopenshot-0.3.0/CMakeLists.txt	2023-03-09 12:35:55.936071209 +0100
-@@ -102,7 +102,7 @@ if ((${CMAKE_CXX_COMPILER_ID} STREQUAL "
+diff -uraN libopenshot-0.4.0/CMakeLists.txt omv-libopenshot-0.4.0/CMakeLists.txt
+--- libopenshot-0.4.0/CMakeLists.txt	2024-12-21 23:27:30.000000000 +0100
++++ omv-libopenshot-0.4.0/CMakeLists.txt	2024-12-23 18:09:18.589065011 +0100
+@@ -97,7 +97,7 @@
  endif()
  
  #### Set C++ standard level
--set(CMAKE_CXX_STANDARD 14)
+-set(CMAKE_CXX_STANDARD 17)
 +set(CMAKE_CXX_STANDARD 20)
  set(CMAKE_CXX_STANDARD_REQUIRED ON)
  set(CMAKE_CXX_EXTENSIONS OFF)

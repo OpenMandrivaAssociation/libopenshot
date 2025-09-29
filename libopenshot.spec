@@ -15,6 +15,7 @@ Group:		System/Libraries
 URL:		https://www.openshot.org/
 Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{version}.tar.gz
 Patch0:		libopenshot-0.3.0-c++17.patch
+Patch1:   https://patch-diff.githubusercontent.com/raw/OpenShot/libopenshot/pull/1018.patch
 
 BuildRequires:	cmake
 BuildRequires:	ninja

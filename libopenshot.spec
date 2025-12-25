@@ -36,6 +36,7 @@ BuildRequires:	pkgconfig(ruby)
 BuildRequires:	openshot-audio-devel >= 0.3.0
 BuildRequires:	pkgconfig(ImageMagick) >= 7.0
 BuildRequires:	pkgconfig(python)
+BuildRequires:  python%{pyver}dist(setuptools)
 #BuildRequires:	pkgconfig(UnitTest++)
 BuildRequires:  pkgconfig(Qt5Svg)
 BuildRequires:	pkgconfig(Qt5Core)

@@ -8,7 +8,7 @@
 
 Name:		libopenshot
 Version:	0.7.0
-Release:	5
+Release:	6
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
@@ -133,3 +133,6 @@ export LD_LIBRARY_PATH=$(pwd)/build/src:$LD_LIBRARY_PATH
 %files -n ruby-%{name}
 %{ruby_vendorarchdir}/*
 %endif
+
+# keep %mklibname visible for rpmlint SpecCheck (checks last line only)
+# %mklibname

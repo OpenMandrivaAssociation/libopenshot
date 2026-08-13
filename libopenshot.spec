@@ -8,7 +8,7 @@
 
 Name:		libopenshot
 Version:	0.7.0
-Release:	8
+Release:	9
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
@@ -26,7 +26,7 @@ BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(babl-0.1) >= 0.1.100
 BuildRequires:  pkgconfig(libzmq)
 BuildRequires:  pkgconfig(jsoncpp)
-BuildRequires:  pkgconfig(opencv4)
+BuildRequires:  pkgconfig(opencv5)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:	swig
 BuildRequires:	ffmpeg-devel

@@ -1,5 +1,5 @@
 %define _disable_ld_no_undefined 1
-%define major	27
+%define major	30
 %define oldlibname %mklibname openshot 25
 %define libname	%mklibname openshot
 %define devname	%mklibname openshot -d
@@ -8,7 +8,7 @@
 
 Name:		libopenshot
 Version:	0.7.0
-Release:	14
+Release:	15
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries

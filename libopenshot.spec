@@ -8,7 +8,7 @@
 
 Name:		libopenshot
 Version:	0.7.0
-Release:	12
+Release:	13
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
@@ -105,7 +105,8 @@ applications that use %{name}.
 
 %prep
 %autosetup -p1
-%cmake .. -DENABLE_TESTS=1 -G Ninja
+%cmake \
+	-DENABLE_MAGICK=OFF .. -DENABLE_TESTS=1 -G Ninja
 
 %build
 export LD_LIBRARY_PATH=$(pwd)/build/src:$LD_LIBRARY_PATH

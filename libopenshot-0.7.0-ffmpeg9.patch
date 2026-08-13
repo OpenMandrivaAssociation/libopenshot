@@ -1,5 +1,5 @@
---- libopenshot-0.7.0/src/FFmpegWriter.cpp	2026-04-03 01:34:37.000000000 +0200
-+++ libopenshot-0.7.0/src/FFmpegWriter.cpp	2026-08-13 19:59:55.020084338 +0200
+--- a/src/FFmpegWriter.cpp	2026-04-03 01:34:37.000000000 +0200
++++ b/src/FFmpegWriter.cpp	2026-08-13 20:03:33.389455317 +0200
 @@ -1042,38 +1042,60 @@
  #endif
  

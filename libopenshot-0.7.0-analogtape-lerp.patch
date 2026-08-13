@@ -1,0 +1,73 @@
+--- a/src/effects/AnalogTape.cpp	2026-04-03 01:34:37.000000000 +0200
++++ b/src/effects/AnalogTape.cpp	2026-08-13 20:09:05.542968375 +0200
+@@ -43,7 +43,7 @@
+ 	info.has_audio = false;
+ }
+ 
+-static inline float lerp(float a, float b, float t) { return a + (b - a) * t; }
++static inline float openshot_lerp(float a, float b, float t) { return a + (b - a) * t; }
+ 
+ std::shared_ptr<Frame> AnalogTape::GetFrame(std::shared_ptr<Frame> frame,
+ 																						int64_t frame_number) {
+@@ -128,7 +128,7 @@
+ 	const float k_stripe = stripe.GetValue(frame_number);
+ 	const float k_bands = staticBands.GetValue(frame_number);
+ 
+-	int r_y = std::round(lerp(0.0f, 2.0f, k_soft));
++	int r_y = std::round(openshot_lerp(0.0f, 2.0f, k_soft));
+ 	if (k_noise > 0.6f)
+ 		r_y = std::min(r_y, 1);
+ 	if (r_y > 0) {
+@@ -140,8 +140,8 @@
+ 		Y.swap(tmpY);
+ 	}
+ 
+-	float shift = lerp(0.0f, 2.5f, k_bleed);
+-	int r_c = std::round(lerp(0.0f, 3.0f, k_bleed));
++	float shift = openshot_lerp(0.0f, 2.5f, k_bleed);
++	int r_c = std::round(openshot_lerp(0.0f, 3.0f, k_bleed));
+ 	float sat = 1.0f - 0.30f * k_bleed;
+ 	float shift_h = shift * 0.5f;
+ #ifdef _OPENMP
+@@ -186,20 +186,20 @@
+ 	uint32_t SCHED_SEED = SEED ^ fnv1a_32(schedSalt, 0x9e3779b9u);
+ 	const float PI = 3.14159265358979323846f;
+ 
+-	float sigmaY = lerp(0.0f, 0.08f, k_noise);
++	float sigmaY = openshot_lerp(0.0f, 0.08f, k_noise);
+ 	const float decay = 0.88f + 0.08f * k_noise;
+ 	const float amp = 0.18f * k_noise;
+ 	const float baseP = 0.0025f + 0.02f * k_noise;
+ 
+-	float Hfixed = lerp(0.0f, 0.12f * h, k_stripe);
++	float Hfixed = openshot_lerp(0.0f, 0.12f * h, k_stripe);
+ 	float Gfixed = 0.10f * k_stripe;
+ 	float Nfixed = 1.0f + 1.5f * k_stripe;
+ 
+ 	float rate = 0.4f * k_bands;
+-	int dur_frames = std::round(lerp(1.0f, 6.0f, k_bands));
+-	float Hburst = lerp(0.06f * h, 0.25f * h, k_bands);
+-	float Gburst = lerp(0.10f, 0.25f, k_bands);
+-	float sat_band = lerp(0.8f, 0.5f, k_bands);
++	int dur_frames = std::round(openshot_lerp(1.0f, 6.0f, k_bands));
++	float Hburst = openshot_lerp(0.06f * h, 0.25f * h, k_bands);
++	float Gburst = openshot_lerp(0.10f, 0.25f, k_bands);
++	float sat_band = openshot_lerp(0.8f, 0.5f, k_bands);
+ 	float Nburst = 1.0f + 2.0f * k_bands;
+ 
+ 	struct Band { float center; double t0; };
+@@ -303,10 +303,10 @@
+ 		}
+ 	}
+ 
+-	float A = lerp(0.0f, 3.0f, k_track); // pixels
+-	float f = lerp(0.25f, 1.2f, k_track); // Hz
+-	float Hsk = lerp(0.0f, 0.10f * h, k_track); // pixels
+-	float S = lerp(0.0f, 5.0f, k_track); // pixels
++	float A = openshot_lerp(0.0f, 3.0f, k_track); // pixels
++	float f = openshot_lerp(0.25f, 1.2f, k_track); // Hz
++	float Hsk = openshot_lerp(0.0f, 0.10f * h, k_track); // pixels
++	float S = openshot_lerp(0.0f, 5.0f, k_track); // pixels
+ 	float phase = 2 * PI * (f * t) + 0.7f * (SEED * 0.001f);
+ 	for (int y = 0; y < h; ++y) {
+ 		float base = A * std::sin(2 * PI * 0.0035f * y + phase);

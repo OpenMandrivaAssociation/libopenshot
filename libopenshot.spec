@@ -138,6 +138,3 @@ export LD_LIBRARY_PATH=$(pwd)/build/src:$LD_LIBRARY_PATH
 %files -n ruby-%{name}
 %{ruby_vendorarchdir}/*
 %endif
-
-# keep %mklibname visible for rpmlint SpecCheck (checks last line only)
-# %mklibname

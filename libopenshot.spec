@@ -8,7 +8,7 @@
 
 Name:		libopenshot
 Version:	0.7.0
-Release:	15
+Release:	16
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
@@ -37,7 +37,7 @@ BuildRequires:	pkgconfig(ruby)
 %endif
 BuildRequires:	openshot-audio-devel >= 0.3.0
 BuildRequires:	pkgconfig(ImageMagick) >= 7.0
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:  python%{pyver}dist(setuptools)
 #BuildRequires:	pkgconfig(UnitTest++)
 BuildRequires:  pkgconfig(Qt5Svg)

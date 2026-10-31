@@ -1,5 +1,5 @@
 %define _disable_ld_no_undefined 1
-%define major	30
+%define major	33
 %define oldlibname %mklibname openshot 25
 %define libname	%mklibname openshot
 %define devname	%mklibname openshot -d
@@ -7,27 +7,19 @@
 %define with_ruby	1
 
 Name:		libopenshot
-Version:	0.7.0
-Release:	16
+Version:	1.1.0
+Release:	1
 Summary:	Library for creating and editing videos
 License:	LGPLv3+
 Group:		System/Libraries
 URL:		https://www.openshot.org/
 Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch0:		libopenshot-0.3.0-c++17.patch
-Patch1:		libopenshot-0.7.0-ffmpeg9.patch
-Patch2:		libopenshot-0.7.0-analogtape-lerp.patch
-#Patch1:   https://patch-diff.githubusercontent.com/raw/OpenShot/libopenshot/pull/1018.patch
 
 BuildRequires:	cmake
 BuildRequires:	ninja
-BuildRequires:  qmake5
-BuildRequires:	cppzmq-devel
 BuildRequires:	doxygen
-BuildRequires:  pkgconfig(alsa)
-BuildRequires:  pkgconfig(babl-0.1) >= 0.1.100
-BuildRequires:  pkgconfig(libzmq)
-BuildRequires:  pkgconfig(jsoncpp)
+BuildRequires:	pkgconfig(babl-0.1) >= 0.1.100
+BuildRequires:	pkgconfig(jsoncpp)
 BuildRequires:  pkgconfig(opencv5)
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:	swig
@@ -35,17 +27,18 @@ BuildRequires:	ffmpeg-devel
 %if %{with_ruby}
 BuildRequires:	pkgconfig(ruby)
 %endif
-BuildRequires:	openshot-audio-devel >= 0.3.0
-BuildRequires:	pkgconfig(ImageMagick) >= 7.0
+BuildRequires:	openshot-audio-devel >= 1.0.2
 BuildRequires:	pkgconfig(python3)
 BuildRequires:  python%{pyver}dist(setuptools)
 #BuildRequires:	pkgconfig(UnitTest++)
-BuildRequires:  pkgconfig(Qt5Svg)
-BuildRequires:	pkgconfig(Qt5Core)
-BuildRequires:	pkgconfig(Qt5Gui)
-BuildRequires:	pkgconfig(Qt5Help)
-BuildRequires:	pkgconfig(Qt5Multimedia)
-BuildRequires:	pkgconfig(Qt5MultimediaWidgets)
+BuildRequires:	pkgconfig(Qt6Core)
+BuildRequires:	pkgconfig(Qt6Gui)
+BuildRequires:	pkgconfig(Qt6Widgets)
+BuildRequires:	pkgconfig(Qt6Svg)
+BuildRequires:	pkgconfig(libpipewire-0.3)
+BuildRequires:	pkgconfig(libspa-0.2)
+BuildRequires:	pkgconfig(gio-2.0)
+BuildRequires:	pkgconfig(gio-unix-2.0)
 BuildRequires:  pkgconfig(zlib)
 
 %description
@@ -107,7 +100,8 @@ applications that use %{name}.
 %autosetup -p1
 %cmake \
 	-DENABLE_MAGICK=OFF \
-	-DENABLE_TESTS=0 \
+	-DENABLE_TESTS=OFF \
+	-DUSE_QT6=ON \
 	-G Ninja
 
 %build
@@ -120,6 +114,7 @@ export LD_LIBRARY_PATH=$(pwd)/build/src:$LD_LIBRARY_PATH
 %files -n %{libname}
 %{_libdir}/libopenshot.so.%{major}
 %{_libdir}/libopenshot.so.%{version}
+%{_libdir}/libopenshot-wayland-capture.so
 #{_libdir}/libopenshot_protobuf.so.%{version}
 #{_libdir}/libopenshot_protobuf.so.%{major}
 

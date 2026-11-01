@@ -1,0 +1,138 @@
+diff -ruN a/src/effects/AnalogTape.cpp b/src/effects/AnalogTape.cpp
+--- a/src/effects/AnalogTape.cpp	2026-11-01 01:16:00.877590214 +0100
++++ b/src/effects/AnalogTape.cpp	2026-11-01 01:16:00.878031761 +0100
+@@ -43,7 +43,7 @@
+ 	info.has_audio = false;
+ }
+ 
+-static inline float lerp(float a, float b, float t) { return a + (b - a) * t; }
++static inline float openshot_lerp(float a, float b, float t) { return a + (b - a) * t; }
+ 
+ std::shared_ptr<Frame> AnalogTape::GetFrame(std::shared_ptr<Frame> frame,
+ 																						int64_t frame_number) {
+@@ -137,7 +137,7 @@
+ 	const float k_stripe = stripe.GetValue(frame_number);
+ 	const float k_bands = staticBands.GetValue(frame_number);
+ 
+-	int r_y = std::round(lerp(0.0f, 2.0f, k_soft) * inverse_scale_x);
++	int r_y = std::round(openshot_lerp(0.0f, 2.0f, k_soft) * inverse_scale_x);
+ 	if (k_noise > 0.6f)
+ 		r_y = std::min(r_y, 1);
+ 	if (r_y > 0) {
+@@ -149,8 +149,8 @@
+ 		Y.swap(tmpY);
+ 	}
+ 
+-	float shift = lerp(0.0f, 2.5f, k_bleed) * inverse_scale_x;
+-	int r_c = std::round(lerp(0.0f, 3.0f, k_bleed) * inverse_scale_x);
++	float shift = openshot_lerp(0.0f, 2.5f, k_bleed) * inverse_scale_x;
++	int r_c = std::round(openshot_lerp(0.0f, 3.0f, k_bleed) * inverse_scale_x);
+ 	float sat = 1.0f - 0.30f * k_bleed;
+ 	float shift_h = shift * 0.5f;
+ #ifdef _OPENMP
+@@ -195,20 +195,20 @@
+ 	uint32_t SCHED_SEED = SEED ^ fnv1a_32(schedSalt, 0x9e3779b9u);
+ 	const float PI = 3.14159265358979323846f;
+ 
+-	float sigmaY = lerp(0.0f, 0.08f, k_noise);
++	float sigmaY = openshot_lerp(0.0f, 0.08f, k_noise);
+ 	const float decay = 0.88f + 0.08f * k_noise;
+ 	const float amp = 0.18f * k_noise;
+ 	const float baseP = 0.0025f + 0.02f * k_noise;
+ 
+-	float Hfixed = lerp(0.0f, 0.12f * h, k_stripe);
++	float Hfixed = openshot_lerp(0.0f, 0.12f * h, k_stripe);
+ 	float Gfixed = 0.10f * k_stripe;
+ 	float Nfixed = 1.0f + 1.5f * k_stripe;
+ 
+ 	float rate = 0.4f * k_bands;
+-	int dur_frames = std::round(lerp(1.0f, 6.0f, k_bands));
+-	float Hburst = lerp(0.06f * h, 0.25f * h, k_bands);
+-	float Gburst = lerp(0.10f, 0.25f, k_bands);
+-	float sat_band = lerp(0.8f, 0.5f, k_bands);
++	int dur_frames = std::round(openshot_lerp(1.0f, 6.0f, k_bands));
++	float Hburst = openshot_lerp(0.06f * h, 0.25f * h, k_bands);
++	float Gburst = openshot_lerp(0.10f, 0.25f, k_bands);
++	float sat_band = openshot_lerp(0.8f, 0.5f, k_bands);
+ 	float Nburst = 1.0f + 2.0f * k_bands;
+ 
+ 	struct Band { float center; double t0; };
+@@ -314,10 +314,10 @@
+ 		}
+ 	}
+ 
+-	float A = lerp(0.0f, 3.0f, k_track) * inverse_scale_x; // pixels
+-	float f = lerp(0.25f, 1.2f, k_track); // Hz
+-	float Hsk = lerp(0.0f, 0.10f * h, k_track); // pixels
+-	float S = lerp(0.0f, 5.0f, k_track) * inverse_scale_x; // pixels
++	float A = openshot_lerp(0.0f, 3.0f, k_track) * inverse_scale_x; // pixels
++	float f = openshot_lerp(0.25f, 1.2f, k_track); // Hz
++	float Hsk = openshot_lerp(0.0f, 0.10f * h, k_track); // pixels
++	float S = openshot_lerp(0.0f, 5.0f, k_track) * inverse_scale_x; // pixels
+ 	float phase = 2 * PI * (f * t) + 0.7f * (SEED * 0.001f);
+ 	for (int y = 0; y < h; ++y) {
+ 		const float y_ref = static_cast<float>(y) * reference_scale_y;
+diff -ruN a/src/effects/DenoiseImage.cpp b/src/effects/DenoiseImage.cpp
+--- a/src/effects/DenoiseImage.cpp	2026-11-01 01:16:00.923824254 +0100
++++ b/src/effects/DenoiseImage.cpp	2026-11-01 01:16:00.924399803 +0100
+@@ -46,7 +46,7 @@
+ 	return t * t * (3.0f - (2.0f * t));
+ }
+ 
+-static inline float lerp(float a, float b, float amount) {
++static inline float openshot_lerp(float a, float b, float amount) {
+ 	return a + ((b - a) * amount);
+ }
+ 
+@@ -510,10 +510,10 @@
+ 				const float out_chroma_r = out_r - out_y;
+ 				const float out_chroma_g = out_g - out_y;
+ 				const float out_chroma_b = out_b - out_y;
+-				out_y = lerp(out_y, prev_y, temporal_luma_mix);
+-				out_r = out_y + lerp(out_chroma_r, prev_r - prev_y, temporal_chroma_mix);
+-				out_g = out_y + lerp(out_chroma_g, prev_g - prev_y, temporal_chroma_mix);
+-				out_b = out_y + lerp(out_chroma_b, prev_b - prev_y, temporal_chroma_mix);
++				out_y = openshot_lerp(out_y, prev_y, temporal_luma_mix);
++				out_r = out_y + openshot_lerp(out_chroma_r, prev_r - prev_y, temporal_chroma_mix);
++				out_g = out_y + openshot_lerp(out_chroma_g, prev_g - prev_y, temporal_chroma_mix);
++				out_b = out_y + openshot_lerp(out_chroma_b, prev_b - prev_y, temporal_chroma_mix);
+ 			}
+ 
+ 			uchar* output_pixel = output_pixels + (y * output_stride) + (x * 4);
+diff -ruN a/src/effects/FilmGrain.cpp b/src/effects/FilmGrain.cpp
+--- a/src/effects/FilmGrain.cpp	2026-11-01 01:16:00.878605470 +0100
++++ b/src/effects/FilmGrain.cpp	2026-11-01 01:16:00.879090627 +0100
+@@ -46,7 +46,7 @@
+ 	return static_cast<int>(value + 0.5f);
+ }
+ 
+-static float lerp(float a, float b, float t) {
++static float openshot_lerp(float a, float b, float t) {
+ 	return a + ((b - a) * t);
+ }
+ 
+@@ -135,11 +135,11 @@
+ 	const float evolution_value   = clamp01(static_cast<float>(evolution.GetValue(frame_number)));
+ 	const float coherence_value   = clamp01(static_cast<float>(coherence.GetValue(frame_number)));
+ 
+-	const float cell_size       = lerp(1.0f, 9.0f, size_value);
++	const float cell_size       = openshot_lerp(1.0f, 9.0f, size_value);
+ 	const float fine_frequency  = 1.0f / cell_size;
+-	const float soft_frequency  = fine_frequency * lerp(0.45f, 0.12f, softness_value);
+-	const float clump_frequency = fine_frequency * lerp(0.35f, 0.08f, clump_value);
+-	const float temporal_rate   = lerp(0.0f, 1.0f, evolution_value) * lerp(1.0f, 8.0f, 1.0f - coherence_value);
++	const float soft_frequency  = fine_frequency * openshot_lerp(0.45f, 0.12f, softness_value);
++	const float clump_frequency = fine_frequency * openshot_lerp(0.35f, 0.08f, clump_value);
++	const float temporal_rate   = openshot_lerp(0.0f, 1.0f, evolution_value) * openshot_lerp(1.0f, 8.0f, 1.0f - coherence_value);
+ 	const float temporal_position   = static_cast<float>(frame_number) * temporal_rate;
+ 	const int   time0               = static_cast<int>(std::floor(temporal_position));
+ 	const int   time1               = time0 + 1;
+@@ -338,7 +338,7 @@
+ 				}
+ 				if (use_clump) {
+ 					const float cluster = clump_col0[s] + (clump_col1[s] - clump_col0[s]) * clump_sx;
+-					grain *= lerp(1.0f, 0.45f + (std::abs(cluster) * 1.35f), clump_value);
++					grain *= openshot_lerp(1.0f, 0.45f + (std::abs(cluster) * 1.35f), clump_value);
+ 				}
+ 				grains[s] = grain;
+ 			}

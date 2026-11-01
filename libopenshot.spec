@@ -14,6 +14,9 @@ License:	LGPLv3+
 Group:		System/Libraries
 URL:		https://www.openshot.org/
 Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{version}.tar.gz
+# Local helpers named lerp() clash with std::lerp once libstdc++ math.h
+# imports it. Cooker builds this tree as C++20.
+Patch0:		libopenshot-1.1.0-lerp.patch
 
 BuildRequires:	cmake
 BuildRequires:	ninja

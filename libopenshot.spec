@@ -28,6 +28,8 @@ BuildRequires:	ffmpeg-devel
 BuildRequires:	pkgconfig(ruby)
 %endif
 BuildRequires:	openshot-audio-devel >= 1.0.2
+# OpenShotAudioConfig.cmake calls find_dependency(ALSA).
+BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(python3)
 BuildRequires:  python%{pyver}dist(setuptools)
 #BuildRequires:	pkgconfig(UnitTest++)

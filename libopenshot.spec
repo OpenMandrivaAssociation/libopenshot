@@ -17,6 +17,8 @@ Source0:	https://github.com/OpenShot/libopenshot/archive/v%{version}/%{name}-%{v
 # Local helpers named lerp() clash with std::lerp once libstdc++ math.h
 # imports it. Cooker builds this tree as C++20.
 Patch0:		libopenshot-1.1.0-lerp.patch
+# OpenCV 5.1 removed the Mat_ comma initializer (Mat_ << a, b, c).
+Patch1:		libopenshot-1.1.1-opencv51-mat.patch
 
 BuildRequires:	cmake
 BuildRequires:	ninja
